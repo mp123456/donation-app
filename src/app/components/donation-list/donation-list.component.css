@@ -1,0 +1,22 @@
+.actions{
+    float: left;
+}
+.donation-list .mat-content{
+    display: inline-block;
+}
+.donation-list .mat-form-field {
+    
+    width: 100%;
+  }
+  i{
+      cursor: pointer;
+  }
+  .bold{
+      font-weight: bold;
+      color: black;
+  }
+  .mat-button{
+    background-color: #1c64d8;
+    color: #ffff;
+    border-radius: 20px !important;
+}

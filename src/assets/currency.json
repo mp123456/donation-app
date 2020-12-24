@@ -1,0 +1,33 @@
+   [
+        {
+          "currency": "אפגני",
+          "abbreviation": "AFN",
+          "symbol": "&#1547;"
+        },
+        {
+          "currency": "פסו ארגנטינאי",
+          "abbreviation": "ARS",
+          "symbol": "&#36;"
+        },
+        {
+          "currency": "פלורין ארובי",
+          "abbreviation": "AWG",
+          "symbol": "&#402;"
+        },
+        {
+          "currency": "דולר אוסטרלי",
+          "abbreviation": "AUD",
+          "symbol": "&#36;"
+        },
+        {
+          "currency": "דולר אמריקני",
+          "abbreviation": "USD",
+          "symbol": "&#36;"
+        },
+        
+        {
+          "currency": "שקל חדש",
+          "abbreviation": "ILS",
+          "symbol": "&#8362;"
+        }
+]

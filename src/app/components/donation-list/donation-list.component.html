@@ -1,0 +1,75 @@
+<div class="donation-list">
+  <h1>רשימת תרומות</h1>
+  <mat-expansion-panel [disabled]="true"
+                       #mep="matExpansionPanel"
+                       *ngFor="let item of data">
+    <mat-expansion-panel-header>
+        <span class="bold">{{item.countryName}}  </span>
+        <span>{{item.amount |currency: item.currency}} </span>
+        <span class="actions">
+           <i  class="material-icons" (click)="mep.expanded = !mep.expanded">edit</i>
+           <i  class="material-icons" (click)="delete.emit(item)">delete</i>
+        </span>
+        
+       
+    </mat-expansion-panel-header>
+   
+  <mat-form-field>
+      <mat-label>שם היישות המדינית הזרה</mat-label>
+      <input appearance="outline" matInput required [(ngModel)]="item.countryName"/>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>סכום התרומה בשח</mat-label>
+      <input appearance="outline" matInput required [(ngModel)]="item.amount"/>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="outline" >
+      <mat-label>סוג היישות המדינית הזרה</mat-label>
+      <mat-select  required [formControl]="countryTypeControl">
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let type of countriesTypes" [value]="type">
+          {{type.label}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="countryTypeControl.hasError('required')">שדה חובה</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>ייעוד התרומה</mat-label>
+      <input appearance="outline" matInput required [(ngModel)]="item.purpose"/>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>התנאים לתרומה</mat-label>
+      <input appearance="outline" matInput required [(ngModel)]="item.conditions"/>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" >
+      <mat-label>סוג המטבע</mat-label>
+      <mat-select  required [formControl]="currencyControl">
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let currency of currencies" [value]="currency">
+          {{currency.currency}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="currencyControl.hasError('required')">שדה חובה</mat-error>
+    </mat-form-field>
+
+
+
+    <mat-form-field appearance="outline">
+      <mat-label>שער ההמרה</mat-label>
+      <input matInput required [(ngModel)]="item.countryName"/>
+    </mat-form-field>
+
+    <mat-action-row>
+      <button mat-button  (click)="save.emit(item)">שמירה</button>
+      
+    </mat-action-row>
+
+  
+  </mat-expansion-panel>
+</div>
+
