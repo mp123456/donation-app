@@ -1,0 +1,5 @@
+<div class="container">
+  <donation-list [data]="$donationList |async" (delete)="deleteItem($event)" (save)="saveEditItem()" [countriesTypes]="countriesTypes" [currencies]="$currencies |async"></donation-list>
+  <button mat-button class="mt-3" (click)="openDialog()">הוספת תרומה</button>
+ 
+</div>
