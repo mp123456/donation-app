@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, Inject, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { Donation } from 'src/app/models/donation';
-import { SelectItem } from 'src/app/models/selectItem';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Donation } from '../../models/donation';
+import { SelectItem } from '../../models/selectItem';
 
 @Component({
   selector: 'app-donation-form',

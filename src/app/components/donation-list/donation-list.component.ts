@@ -1,8 +1,8 @@
 import { AnimationKeyframesSequenceMetadata } from '@angular/animations';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Donation } from 'src/app/models/donation';
-import { SelectItem } from 'src/app/models/selectItem';
+import { Donation } from '../../models/donation';
+import { SelectItem } from '../../models/selectItem';
 
 @Component({
   selector: 'donation-list',
