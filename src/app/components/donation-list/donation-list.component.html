@@ -2,8 +2,8 @@
   <h1>רשימת תרומות</h1>
   <mat-expansion-panel [disabled]="true"
                        #mep="matExpansionPanel"
-                       *ngFor="let item of data">
-    <mat-expansion-panel-header>
+                       *ngFor="let item of data" [ngClass]="{'expanded-panel':mep.expanded}">
+    <mat-expansion-panel-header >
         <span class="bold">{{item.countryName}}  </span>
         <span>{{item.amount |currency: item.currency}} </span>
         <span class="actions">
@@ -14,14 +14,14 @@
        
     </mat-expansion-panel-header>
    
-  <mat-form-field>
+  <mat-form-field appearance="outline">
       <mat-label>שם היישות המדינית הזרה</mat-label>
-      <input appearance="outline" matInput required [(ngModel)]="item.countryName"/>
+      <input  matInput required [(ngModel)]="item.countryName"/>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label>סכום התרומה בשח</mat-label>
-      <input appearance="outline" matInput required [(ngModel)]="item.amount"/>
+      <input  matInput required [(ngModel)]="item.amount"/>
     </mat-form-field>
 
 
@@ -36,14 +36,14 @@
       <mat-error *ngIf="countryTypeControl.hasError('required')">שדה חובה</mat-error>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label>ייעוד התרומה</mat-label>
-      <input appearance="outline" matInput required [(ngModel)]="item.purpose"/>
+      <input  matInput required [(ngModel)]="item.purpose"/>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label>התנאים לתרומה</mat-label>
-      <input appearance="outline" matInput required [(ngModel)]="item.conditions"/>
+      <input  matInput required [(ngModel)]="item.conditions"/>
     </mat-form-field>
 
     <mat-form-field appearance="outline" >
@@ -61,7 +61,7 @@
 
     <mat-form-field appearance="outline">
       <mat-label>שער ההמרה</mat-label>
-      <input matInput required [(ngModel)]="item.countryName"/>
+      <input matInput required [(ngModel)]="item.conversionRate"/>
     </mat-form-field>
 
     <mat-action-row>

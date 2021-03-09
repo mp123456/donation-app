@@ -7,5 +7,6 @@ export class Donation{
     currency:string;
     conversionRate:number;
     amount:number;
+    userId:string;
 
 }

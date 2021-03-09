@@ -2,6 +2,7 @@ import { AsyncPipe } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { DonationFormComponent } from './components/donation-form/donation-form.component';
 import { Donation } from './models/donation';
 import { SelectItem } from './models/selectItem';
@@ -28,9 +29,13 @@ export class AppComponent implements OnInit {
      this.$currencies= this.donationService.getCurrencies();
   }
   ngOnInit(): void {
-    this.donationService.getCurrencies().subscribe(res=>{
+    this.donationService.getCurrencies().pipe(
+      take(1)
+    ).subscribe(res=>{
       this.currencies=res;
     })
+
+    this.donationService.getDonationsList();
   }
 
   openDialog(): void {
@@ -40,16 +45,20 @@ export class AppComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result:Donation) => {
-      console.log('The dialog was closed');
+      if(result!=null){
       let id = this.donationStoreService.getSnapshot().donations.length+1;
       result.id=id;
-     this.donationStoreService.addDonation(result)
+     this.donationStoreService.addDonation(Object.assign({}, result));
+     this.donationService.addDonation(this.convertStringToInt(result));
+      }
+     
     });
   }
 
   saveEditItem(item:Donation){
     if(item!=null && item.countryName!=null){
       this.donationStoreService.editDonation(item);
+      this.donationService.editDonation(this.convertStringToInt(item));
     }
     
   }
@@ -57,6 +66,9 @@ export class AppComponent implements OnInit {
     
       this.donationStoreService.deleteDonation(item.id);
     
+  }
+  convertStringToInt(item:Donation){
+    return Object.assign({}, {...item,amount: +item.amount, conversionRate:+item.conversionRate,countrtType:+item.countrtType})
   }
 }
 

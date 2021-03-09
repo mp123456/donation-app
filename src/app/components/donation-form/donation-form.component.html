@@ -1,64 +1,66 @@
 <div>
     <h2>הוספת דיווח על עמותה</h2>
-<mat-dialog-content>
+<mat-dialog-content [formGroup]="donationForm">
         <mat-form-field  appearance="outline" class="col-4">
             <mat-label>שם היישות המדינית הזרה</mat-label>
-            <input matInput pattern="[A-Za-z\u0590-\u05FF]*"  [formControl]="countryControl"  required [(ngModel)]="data.item.countryName"/>
-            <mat-error *ngIf="countryControl.hasError('required')">שדה חובה</mat-error>
+            <input matInput  formControlName="countryName"  required />
+            <mat-error *ngIf="donationForm.controls.countryName.hasError('required')">שדה חובה</mat-error>
           </mat-form-field>
       
           <mat-form-field appearance="outline" class="col-4">
             <mat-label>סכום התרומה בשח</mat-label>
-            <input type="number" matInput required  [formControl]="amountControl"   [(ngModel)]="data.item.amount"/>
-            <mat-error *ngIf="amountControl.hasError('required')">שדה חובה</mat-error>
+            <input  matInput required formControlName="amount"/>
+            <mat-error *ngIf="donationForm.controls.amount.hasError('required')">שדה חובה</mat-error>
           </mat-form-field>
       
       
           <mat-form-field appearance="outline" class="col-4" >
             <mat-label>סוג היישות המדינית הזרה</mat-label>
-            <mat-select  required  [formControl]="countryTypeControl" >
+            <mat-select required formControlName="countrtType">
               <mat-option>--</mat-option>
-              <mat-option *ngFor="let type of data.countriesTypes" [value]="type">
+              <mat-option *ngFor="let type of data.countriesTypes"  [value]="type.value">
                 {{type.label}}
               </mat-option>
             </mat-select>
-            <mat-error *ngIf="countryTypeControl.hasError('required')">שדה חובה</mat-error>
+            <mat-error *ngIf="donationForm.controls.countrtType.hasError('required')">שדה חובה</mat-error>
           </mat-form-field>
       
           <mat-form-field appearance="outline" class="col-12">
             <mat-label>ייעוד התרומה</mat-label>
-            <input matInput required [(ngModel)]="data.item.purpose"/>
+            <input matInput required formControlName="purpose"/>
           </mat-form-field>
       
           <mat-form-field appearance="outline" class="col-12">
             <mat-label>התנאים לתרומה</mat-label>
-            <input matInput required [(ngModel)]="data.item.conditions"/>
+            <input matInput  formControlName="conditions"/>
           </mat-form-field>
       
           <mat-form-field appearance="outline" class="col-4">
             <mat-label>סוג המטבע</mat-label>
-            <mat-select  required  [formControl]="currencyControl" >
+            <mat-select required  formControlName="currency">
               <mat-option>--</mat-option>
-              <mat-option *ngFor="let currency of data.currencies" [value]="currency">
+              <mat-option *ngFor="let currency of data.currencies"   [value]="currency.abbreviation">
                 {{currency.currency}}
               </mat-option>
             </mat-select>
-            <mat-error *ngIf="currencyControl.hasError('required')">שדה חובה</mat-error>
+            <mat-error *ngIf="donationForm.controls.currency.hasError('required')">שדה חובה</mat-error>
           </mat-form-field>
       
       
       
           <mat-form-field appearance="outline" class="col-4">
             <mat-label>שער ההמרה</mat-label>
-            <input type="number" matInput required [(ngModel)]="data.item.conversionRate"/>
+            <input required matInput formControlName="conversionRate"/>
           </mat-form-field>
     
     
    
 
 </mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-button [mat-dialog-close]="data.item" [disabled]="!countryControl.valid || !amountControl.valid || !currencyControl.valid ">שמירה</button>
+<mat-dialog-actions class="col-12">
+  <button mat-button class="col-3" (click)="clearForm()" >ניקוי</button>
+  <button mat-button class="col-3" [mat-dialog-close]="donationForm.value" [disabled]="donationForm.invalid">שמירה</button>
+  
 </mat-dialog-actions>
 
    

@@ -20,3 +20,9 @@
     color: #ffff;
     border-radius: 20px !important;
 }
+.expanded-panel{
+    border:solid 1px #3482bf;
+}
+.expanded-panel .mat-expansion-panel-header{
+    background-color: #e5f8ff !important;
+}

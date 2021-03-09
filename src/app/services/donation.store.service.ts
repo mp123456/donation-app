@@ -9,7 +9,7 @@ export class DonationState {
   }
   
   const INITIAL_ROOT_STATE: DonationState = {
-    donations:[{id:1, purpose:"ייעוד",conditions:"תנאים", countryName:"יישות 1", currency:"ILS",conversionRate:3.4, countrtType:1,amount:100}]
+    donations:[]
   }
   
   
@@ -24,6 +24,9 @@ export class DonationState {
 
     getDonationsList():Observable<Donation[]>{
       return this.select(s=>s.donations);
+    }
+    setDonationsList(list:Donation[]){
+      this.setState('',s=>({...s,donations:list}))  
     }
 
     addDonation(item:Donation){

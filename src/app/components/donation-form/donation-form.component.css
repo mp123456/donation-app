@@ -7,3 +7,7 @@
 
    background-color: #ffff;
 }
+.mat-dialog-actions{
+    text-align: left;
+    display: block;
+}
